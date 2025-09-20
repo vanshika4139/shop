@@ -1,0 +1,626 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VK Garments</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #fff;
+      color: #333;
+    }
+
+    /* Header/Navbar */
+    header {
+      background: #000;
+      color: #fff;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #ffd700;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #ffd700;
+    }
+
+    .cart-search {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .cart {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .cart-icon {
+      font-size: 1.5rem;
+      color: #fff;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: #ffd700;
+      color: #000;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 0.8rem;
+    }
+
+    .search-bar input {
+      padding: 0.5rem;
+      border: none;
+      border-radius: 5px;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 500px;
+      overflow: hidden;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: #fff;
+    }
+
+    .hero-text h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-text button {
+      padding: 0.8rem 1.5rem;
+      background: #ffd700;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+
+    .hero-text button:hover {
+      background: #e6c200;
+    }
+
+    /* Categories Section */
+    .categories {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .categories h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .category-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .category-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .category-card:hover {
+      transform: scale(1.05);
+    }
+
+    .category-card button {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 0.5rem 1rem;
+      background: #ffd700;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Featured Products */
+    .featured {
+      padding: 2rem;
+      background: #f9f9f9;
+    }
+
+    .featured h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+    }
+
+    .product-card button {
+      padding: 0.5rem 1rem;
+      background: #ffd700;
+      border: none;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+
+    /* Special Offers */
+    .offers {
+      background: url('https://via.placeholder.com/1200x300') center/cover;
+      padding: 2rem;
+      text-align: center;
+      color: #fff;
+    }
+
+    .offers h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .offers button {
+      padding: 0.8rem 1.5rem;
+      background: #ffd700;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* About Us */
+    .about {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 2rem;
+      background: #f9f9f9;
+    }
+
+    .contact h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .contact-form button {
+      padding: 0.8rem 1.5rem;
+      background: #ffd700;
+      border: none;
+      cursor: pointer;
+    }
+
+    .contact-info p {
+      margin-bottom: 0.5rem;
+    }
+
+    .social-icons a {
+      font-size: 1.5rem;
+      margin: 0 0.5rem;
+      color: #000;
+      text-decoration: none;
+    }
+
+    /* Footer */
+    footer {
+      background: #000;
+      color: #fff;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .footer-links a {
+      color: #fff;
+      margin: 0 1rem;
+      text-decoration: none;
+    }
+
+    .newsletter input {
+      padding: 0.5rem;
+      border: none;
+      border-radius: 5px;
+      margin-right: 0.5rem;
+    }
+
+    .newsletter button {
+      padding: 0.5rem 1rem;
+      background: #ffd700;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 400px;
+    }
+
+    .modal-content img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="navbar">
+      <div class="logo">VK Garments</div>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#categories">Categories</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="cart-search">
+        <div class="cart">
+          <span class="cart-icon">🛒</span>
+          <span class="cart-count">0</span>
+        </div>
+        <div class="search-bar">
+          <input type="text" placeholder="Search products..." id="searchInput">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <img src="jjj" alt="Banner">
+    <div class="hero-text">
+      <h1>Welcome to VK Garments – Fashion for Everyone</h1>
+      <button onclick="window.location.href='#shop'">Shop Now</button>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="categories" id="categories">
+    <h2>Shop by Category</h2>
+    <div class="category-grid">
+      <div class="category-card">
+        <img src="vvvvv.png" alt="Men's Wear">
+        <h3>Men's Wear</h3>
+        <button>Explore</button>
+      </div>
+      <div class="category-card">
+        <img src="bb.png" alt="casual shirts">
+        <h3>casual shirts</h3>
+        <button>Explore</button>
+      </div>
+      <div class="category-card">
+        <img src="aa.png" alt="Jackets">
+        <h3>Jackets</h3>
+        <button>Explore</button>
+      </div>
+      <div class="category-card">
+        <img src="kkkk.png" alt="Accessories">
+        <h3>Accessories</h3>
+        <button>Explore</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="featured" id="shop">
+    <h2>Featured Products</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="vvvvv.png" alt="Product 1">
+        <h3>Shirt</h3>
+        <p>₹500</p>
+        <button class="add-to-cart" data-name="Shirt" data-price="₹500">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="aa.png" alt="Product 2">
+        <h3>Jackets</h3>
+        <p>₹1500</p>
+        <button class="add-to-cart" data-name="Jackets" data-price="₹1500">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="cc.png" alt="Product 3">
+        <h3>Hoodie</h3>
+        <p>₹999</p>
+        <button class="add-to-cart" data-name="Hoodie" data-price="₹999">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="ee.png" alt="Product 4">
+        <h3>Jeans</h3>
+        <p>₹699</p>
+        <button class="add-to-cart" data-name="Jeans" data-price="₹699">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="ff.png" alt="Product 5">
+        <h3>T-Shirt</h3>
+        <p>₹399</p>
+        <button class="add-to-cart" data-name="T-Shirt" data-price="₹399">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="kkkk.png" alt="Product 6">
+        <h3>Bags</h3>
+        <p>₹499</p>
+        <button class="add-to-cart" data-name="Bags" data-price="₹499">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Special Offers -->
+  <section class="offers">
+    <h2>Flat 30% Off on New Arrivals!</h2>
+    <button onclick="window.location.href='#shop'">Shop Offer</button>
+  </section>
+
+  <!-- About Us -->
+  <section class="about" id="about">
+    <h2>About VK Garments</h2>
+    <p>VK Garments is your one-stop shop for stylish, affordable, and high-quality clothing for men.</p>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <div class="contact-grid">
+      <div class="contact-form">
+        <input type="text" placeholder="Name">
+        <input type="email" placeholder="Email">
+        <textarea placeholder="Message" rows="5"></textarea>
+        <button>Send Message</button>
+      </div>
+      <div class="contact-info">
+        <p><strong>Address:</strong> Near Shiv Chowk, Ambala road, 247232</p>
+        <p><strong>Phone:</strong> 9536208095</p>
+        <p><strong>Email:</strong> vkuma5791@gmail.com</p>
+        <div class="social-icons">
+          <a href="#">📘</a>
+          <a href="#">🐦</a>
+          <a href="#">📷</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#shop">Shop</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="newsletter">
+      <input type="email" placeholder="Subscribe to our newsletter">
+      <button>Subscribe</button>
+    </div>
+    <p>Copyright © 2025 VK Garments</p>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal" id="quickViewModal">
+    <div class="modal-content">
+      <h3 id="modalProductName"></h3>
+      <img id="modalProductImage" src="" alt="Product">
+      <p id="modalProductPrice"></p>
+      <button onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    // Cart Counter
+    let cartCount = 0;
+    const cartCountElement = document.querySelector('.cart-count');
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        cartCount++;
+        cartCountElement.textContent = cartCount;
+      });
+    });
+
+    // Search Filter
+    const searchInput = document.getElementById('searchInput');
+    const productCards = document.querySelectorAll('.product-card');
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      productCards.forEach(card => {
+        const name = card.querySelector('h3').textContent.toLowerCase();
+        card.style.display = name.includes(query) ? 'block' : 'none';
+      });
+    });
+
+    // Quick View Modal
+    const modal = document.getElementById('quickViewModal');
+    const modalProductName = document.getElementById('modalProductName');
+    const modalProductImage = document.getElementById('modalProductImage');
+    const modalProductPrice = document.getElementById('modalProductPrice');
+
+    productcards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (e.target.classList.contains('add-to-cart')) return;
+        modalProductName.textContent = card.querySelector('h3').textContent;
+        modalProductImage.src = card.querySelector('img').src;
+        modalProductPrice.textContent = card.querySelector('p').textContent;
+        modal.style.display = 'flex';
+      });
+    });
+
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+
+    // Fade-in Animation on Scroll
+    const fadeInElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.categories, .featured, .offers, .about, .contact').forEach(section => {
+      section.classList.add('fade-in');
+      observer.observe(section);
+    });
+
+    // Image Slider
+    const heroImages = [
+      'https://via.placeholder.com/1200x500',
+      'https://via.placeholder.com/1200x500/0000FF',
+      'https://via.placeholder.com/1200x500/FF0000'
+    ];
+    let currentImageIndex = 0;
+    const hero = document.querySelector('.hero img');
+
+    setInterval(() => {
+      currentImageIndex = (currentImageIndex + 1) % heroImages.length;
+      hero.src = heroImages[currentImageIndex];
+    }, 5000);
+  </script>
+</body>
+</html>
